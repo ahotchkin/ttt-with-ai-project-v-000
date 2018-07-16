@@ -45,7 +45,7 @@ module Players
       end
       space
     end
-
+    
   end
 
 end
