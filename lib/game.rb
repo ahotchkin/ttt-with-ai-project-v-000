@@ -51,17 +51,17 @@ class Game
 
   def turn
     if self.current_player.class == Players::Human
-      # sleep(0.75)
+      sleep(0.75)
       puts "#{self.current_player.token}, it's your turn. Please enter 1-9:"
     elsif self.current_player.class == Players::Computer
-      # sleep(0.75)
+      sleep(0.75)
       puts "The computer is planning its next move..."
-      # sleep(1)
+      sleep(1)
     end
     input = self.current_player.move(self.board)
     if self.board.valid_move?(input)
       self.board.update(input, current_player)
-      # sleep(0.5)
+      sleep(0.5)
       self.board.display
     else
       puts "Your move was not valid. Let's try this again..."
@@ -74,17 +74,17 @@ class Game
       self.turn
       self.play
     elsif self.won?
-      # sleep(0.75)
+      sleep(0.75)
       puts "Congratulations #{self.winner}!"
     elsif self.draw?
-      # sleep(0.75)
+      sleep(0.75)
       puts "Cat's Game!"
     end
   end
 
   def zero_player_game
     puts "Enjoy the show!"
-    # sleep(0.5)
+    sleep(0.5)
     game = Game.new(player_1 = Players::Computer.new("X"), player_2 = Players::Computer.new("O"))
     game.play
   end
@@ -92,13 +92,13 @@ class Game
   def one_player_game
     puts "Great! You'll be playing against the computer. What is your name?"
     name = gets.strip.capitalize
-    # sleep(0.5)
+    sleep(0.5)
     puts "Nice to meet you, #{name}! Who should go first? Enter 'me' or 'computer'."
     first_player = ""
 
     while first_player == ""
       first_player = gets.strip
-      # sleep(0.5)
+      sleep(0.5)
       if first_player == "me"
         puts "OK, #{name}! You'll be X."
         game = Game.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"))
@@ -151,7 +151,7 @@ class Game
 
   def start
     number = gets.strip
-    # sleep(0.5)
+    sleep(0.5)
     if number == "0"
       self.zero_player_game
     elsif number == "1"
@@ -165,7 +165,7 @@ class Game
       self.start
     end
 
-    # sleep(0.5)
+    sleep(0.5)
     self.play_again?
   end
 
