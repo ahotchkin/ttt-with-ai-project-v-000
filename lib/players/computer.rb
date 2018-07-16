@@ -19,41 +19,79 @@ module Players
       # Computer will first look to see if there any of the winning combinations can be completed on the next move.
       # Didn't attempt to have computer choose to win vs. block. Computer will complete the first winning combination, regardless of token.
       space = ""
-      WIN_COMBINATIONS.detect do |combo|
-        if board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[0]] != " " && board.cells[combo[2]] == " "
-           space = (combo[2]+1).to_s
-        elsif board.cells[combo[0]] == board.cells[combo[2]] && board.cells[combo[0]] != " " && board.cells[combo[1]] == " "
-          space = (combo[1]+1).to_s
-        elsif board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[1]] != " " && board.cells[combo[0]] == " "
-          space = (combo[0]+1).to_s
-        end
-      end
+
+      if self.token == "O"
+         WIN_COMBINATIONS.detect do |combo|
+           if board.cells[combo[0]] == "O" && board.cells[combo[1]] == "O" && board.cells[combo[2]] == " "
+             space = (combo[2]+1).to_s
+           elsif board.cells[combo[0]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[1]] == " "
+             space = (combo[1]+1).to_s
+           elsif board.cells[combo[1]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[0]] == " "
+             space = (combo[0]+1).to_s
+           end
+         end
+       elsif self.token == "O"
+         WIN_COMBINATIONS.detect do |combo|
+           if board.cells[combo[0]] == "X" && board.cells[combo[1]] == "X" && board.cells[combo[2]] == " "
+             space = (combo[2]+1).to_s
+           elsif board.cells[combo[0]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[1]] == " "
+             space = (combo[1]+1).to_s
+           elsif board.cells[combo[1]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[0]] == " "
+             space = (combo[0]+1).to_s
+           end
+         end
+       elsif self.token == "X"
+         WIN_COMBINATIONS.detect do |combo|
+           if board.cells[combo[0]] == "X" && board.cells[combo[1]] == "X" && board.cells[combo[2]] == " "
+             space = (combo[2]+1).to_s
+           elsif board.cells[combo[0]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[1]] == " "
+             space = (combo[1]+1).to_s
+           elsif board.cells[combo[1]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[0]] == " "
+             space = (combo[0]+1).to_s
+           end
+         end
+       elsif self.token == "X"
+         WIN_COMBINATIONS.detect do |combo|
+           if board.cells[combo[0]] == "O" && board.cells[combo[1]] == "O" && board.cells[combo[2]] == " "
+             space = (combo[2]+1).to_s
+           elsif board.cells[combo[0]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[1]] == " "
+             space = (combo[1]+1).to_s
+           elsif board.cells[combo[1]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[0]] == " "
+             space = (combo[0]+1).to_s
+           end
+         end
+       end
+
+      # if self.token == "X" || self.token == "O"
+      #   WIN_COMBINATIONS.detect do |combo|
+      #     if self.token == board.cells[combo[0]] && board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[0]] != " " && board.cells[combo[2]] == " "
+      #       space = (combo[2]+1).to_s
+      #     elsif self.token == board.cells[combo[0]] && board.cells[combo[0]] == board.cells[combo[2]] && board.cells[combo[0]] != " " && board.cells[combo[1]] == " "
+      #       space = (combo[1]+1).to_s
+      #     elsif self.token == board.cells[combo[1]] && board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[1]] != " " && board.cells[combo[0]] == " "
+      #       space = (combo[0]+1).to_s
+      #     end
+      #   end
+      # else
+      #   WIN_COMBINATIONS.detect do |combo|
+      #     if self.token != board.cells[combo[0]] && board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[0]] != " " && board.cells[combo[2]] == " "
+      #       space = (combo[2]+1).to_s
+      #     elsif self.token != board.cells[combo[0]] && board.cells[combo[0]] == board.cells[combo[2]] && board.cells[combo[0]] != " " && board.cells[combo[1]] == " "
+      #       space = (combo[1]+1).to_s
+      #     elsif self.token != board.cells[combo[1]] && board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[1]] != " " && board.cells[combo[0]] == " "
+      #       space = (combo[0]+1).to_s
+      #     end
+      #   end
+      # end
+
 
 
       # WIN_COMBINATIONS.detect do |combo|
-      #   if self.token == "X" && board.cells[combo[0]] == "O" && board.cells[combo[1]] == "O" && board.cells[combo[2]] == " "
-      #     space = (combo[2]+1).to_s
-      #   elsif self.token == "X" && board.cells[combo[0]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[1]] == " "
+      #   if board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[0]] != " " && board.cells[combo[2]] == " "
+      #      space = (combo[2]+1).to_s
+      #   elsif board.cells[combo[0]] == board.cells[combo[2]] && board.cells[combo[0]] != " " && board.cells[combo[1]] == " "
       #     space = (combo[1]+1).to_s
-      #   elsif self.token == "X" && board.cells[combo[1]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[0]] == " "
-      #     space = (combo[0]+1).to_s
-      #   elsif self.token == "X" && board.cells[combo[0]] == "X" && board.cells[combo[1]] == "X" && board.cells[combo[2]] == " "
-      #     space = (combo[2]+1).to_s
-      #   elsif self.token == "X" && board.cells[combo[0]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[1]] == " "
-      #     space = (combo[1]+1).to_s
-      #   elsif self.token == "X" && board.cells[combo[1]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[0]] == " "
-      #     space = (combo[0]+1).to_s
-      #   elsif self.token == "O" && board.cells[combo[0]] == "X" && board.cells[combo[1]] == "X" && board.cells[combo[2]] == " "
-      #     space = (combo[2]+1).to_s
-      #   elsif self.token == "O" && board.cells[combo[0]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[1]] == " "
-      #     space = (combo[1]+1).to_s
-      #   elsif self.token == "O" && board.cells[combo[1]] == "X" && board.cells[combo[2]] == "X" && board.cells[combo[0]] == " "
-      #     space = (combo[0]+1).to_s
-      #   elsif self.token == "O" && board.cells[combo[0]] == "O" && board.cells[combo[1]] == "O" && board.cells[combo[2]] == " "
-      #     space = (combo[2]+1).to_s
-      #   elsif self.token == "O" && board.cells[combo[0]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[1]] == " "
-      #     space = (combo[1]+1).to_s
-      #   elsif self.token == "O" && board.cells[combo[1]] == "O" && board.cells[combo[2]] == "O" && board.cells[combo[0]] == " "
+      #   elsif board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[1]] != " " && board.cells[combo[0]] == " "
       #     space = (combo[0]+1).to_s
       #   end
       # end
